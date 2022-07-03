@@ -1,4 +1,4 @@
-FROM golang:go 1.18
+FROM golang:1.18
 ENV ROOT=/go/src/app
 RUN mkdir ${ROOT}
 WORKDIR ${ROOT}
