@@ -1,2 +1,1 @@
-Webブラウザで表示するHTMLを返す  
 dockerとkubernetes
