@@ -2,7 +2,7 @@ package main
 
 import "github.com/gin-gonic/gin"
 import "net/http"
-import "http/template" 
+// import "http/template"
 
 func main(){
     engine := gin.Default()
