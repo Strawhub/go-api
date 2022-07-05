@@ -1,8 +1,10 @@
 package main
 
-import "github.com/gin-gonic/gin"
-import "net/http"
-// import "http/template"
+import (
+	// "fmt"
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
 func main(){
     engine := gin.Default()
@@ -10,9 +12,9 @@ func main(){
 	engine.Static("/static", "./static")
 	engine.LoadHTMLGlob("static/index.tmpl")
 	engine.GET("/", func(context *gin.Context) {
-	context.HTML(http.StatusOK, "index.tmpl", gin.H{
-	"title": "XXX",
-})
-})
-engine.Run(":3000")
+		context.HTML(http.StatusOK, "index.tmpl", gin.H{
+		"title": "XXX",
+		})
+	})
+	engine.Run(":3000")
 }
