@@ -16,7 +16,7 @@ func main(){
 		"title": "XXX",
 		})
 	})
-	engine.GET("/hello", func(context *gin.Context) {
+	engine.GET("/data", func(context *gin.Context) {
 		context.HTML(http.StatusOK, "index.tmpl", gin.H{
 		"title": "japan",
 		})
