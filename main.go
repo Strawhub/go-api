@@ -1,24 +1,29 @@
 package main
 
 import (
-	// "fmt"
-	"github.com/gin-gonic/gin"
+	"html/template"
 	"net/http"
+	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
-func main(){
-    engine := gin.Default()
+func main() {
+	engine := gin.Default()
 	// router.Static("URL", "静的ファイル格納場所")
 	engine.Static("/static", "./static")
-	engine.LoadHTMLGlob("static/index.tmpl")
+	engine.SetFuncMap(template.FuncMap{
+		"upper": strings.ToUpper,
+	})
+	engine.LoadHTMLGlob("static/*.tmpl")
 	engine.GET("/", func(context *gin.Context) {
 		context.HTML(http.StatusOK, "index.tmpl", gin.H{
-		"title": "XXX",
+			"title": "XXX",
 		})
 	})
 	engine.GET("/data", func(context *gin.Context) {
-		context.HTML(http.StatusOK, "index.tmpl", gin.H{
-		"title": "japan",
+		context.HTML(http.StatusOK, "db.tmpl", gin.H{
+			"title": "追加",
 		})
 	})
 	engine.Run(":3000")
