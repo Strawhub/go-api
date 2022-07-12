@@ -11,11 +11,13 @@ import (
 func main() {
 	engine := gin.Default()
 	// router.Static("URL", "静的ファイル格納場所")
-	engine.Static("/static", "./static")
+
 	engine.SetFuncMap(template.FuncMap{
 		"upper": strings.ToUpper,
 	})
-	engine.LoadHTMLGlob("static/*.tmpl")
+	engine.Static("/static", "./static")
+	engine.LoadHTMLGlob("static/*.tmpl") // 相対パスで事前にテンプレートをロード
+
 	engine.GET("/", func(context *gin.Context) {
 		context.HTML(http.StatusOK, "index.tmpl", gin.H{
 			"title": "XXX",
