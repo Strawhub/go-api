@@ -6,7 +6,23 @@
     </style>
 </head>
 <body>
-    <h1>check</h1>
-    <a href='/'>トップへ戻る</a>1
+    <h1>マイページにログイン</h1><form action="user-confirm" method="post">  
+    <table>
+    <tr>
+        <td>アカウント名</td>
+        <td><input type="text" name="account" value=""></td>
+    </tr>
+    <tr>
+        <td>お名前</td>
+        <td><input type="text" name="name" value=""></td>
+    </tr>
+    <tr>
+        <td>パスワード</td>
+        <td><input type="password" name="passwd" value=""></td>
+    </tr>
+    </table>
+    <input type="hidden" name="id" value="Id">
+    </form>
+    <a href='/'>トップへ戻る</a>
 </body>
 </html>
