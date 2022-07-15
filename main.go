@@ -28,5 +28,10 @@ func main() {
 			"title": "追加",
 		})
 	})
+	engine.GET("/data/result", func(context *gin.Context) {
+		context.HTML(http.StatusOK, "result.tmpl", gin.H{
+			"title": "追加",
+		})
+	})
 	engine.Run(":3000")
 }
