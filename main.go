@@ -20,9 +20,17 @@ func database(w http.ResponseWriter, r *http.Request) {
 	}
 	t.Execute(w, "入力")
 }
+func result(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("static/result.tmpl")
+	if err != nil {
+		log.Println(err)
+	}
+	t.Execute(w, "入力確認画面")
+}
 
 func main() {
 	http.HandleFunc("/", index)
 	http.HandleFunc("/data", database)
+	http.HandleFunc("/data/result", result)
 	http.ListenAndServe(":8080", nil)
 }
