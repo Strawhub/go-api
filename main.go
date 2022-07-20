@@ -38,6 +38,8 @@ func result(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	//public配下の静的ファイルを読み込み
+	http.Handle("/static/styles/", http.StripPrefix("/static/styles/", http.FileServer(http.Dir("static/styles/"))))
 	http.HandleFunc("/", index)
 	http.HandleFunc("/data", database)
 	http.HandleFunc("/data/result", result)
