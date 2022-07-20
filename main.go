@@ -14,9 +14,9 @@ func index(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, "トップページ")
 }
 func database(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("static/db.tmpl")
-	if err != nil {
-		log.Println(err)
+	t, low := template.ParseFiles("static/db.tmpl")
+	if low != nil {
+		log.Println(low)
 	}
 	t.Execute(w, "入力")
 }
