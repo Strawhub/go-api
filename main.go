@@ -1,35 +1,26 @@
 package main
 
 import (
-	"html/template"
-	"net/http"
-	"strings"
+	"go-api/model"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	engine := gin.Default()
-	// router.Static("URL", "静的ファイル格納場所")
-	engine.SetFuncMap(template.FuncMap{
-		"upper": strings.ToUpper,
+	r := gin.Default()
+
+	r.GET("/questions", func(c *gin.Context) {
+		// 値を取得する
+		questions := model.GetAll()
+		// JSONで返す
+		c.JSON(200, questions)
 	})
-	engine.Static("/static", "./static")
-	engine.LoadHTMLGlob("static/*.tmpl") // 相対パスで事前にテンプレートをロード
-	engine.GET("/", func(context *gin.Context) {
-		context.HTML(http.StatusOK, "index.tmpl", gin.H{
-			"title": "XXX",
-		})
+	r.GET("/:tag/:num", func(c *gin.Context) {
+		tag := c.Param("tag")
+		num := c.Param("num")
+		question := model.GetBy(tag, num)
+		c.JSON(200, question)
 	})
-	engine.GET("/data", func(context *gin.Context) {
-		context.HTML(http.StatusOK, "db.tmpl", gin.H{
-			"title": "追加",
-		})
-	})
-	engine.GET("/data/result", func(context *gin.Context) {
-		context.HTML(http.StatusOK, "result.tmpl", gin.H{
-			"title": "追加",
-		})
-	})
-	engine.Run(":3000")
+
+	r.Run()
 }
