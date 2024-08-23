@@ -1,8 +1,7 @@
 package main
 
 import (
-	"go-api/model"
-
+	"github.com/Strawhub/go-api/model"
 	"github.com/gin-gonic/gin"
 )
 
